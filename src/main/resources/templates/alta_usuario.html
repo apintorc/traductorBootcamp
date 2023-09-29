@@ -1,0 +1,99 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+ crossorigin="anonymous">
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+ 
+ <form action="#" th:object="${usuario_v}" method="POST" th:action="@{/grabar_usuario}" class="form-horizontal">
+ <!-- Account Number field -->
+		<div class="form-group">
+			<label for="number" >User</label>
+			<input type="text" class="form-control" id="id_alumno"
+					th:field="*{user}" 
+					style="width: 10em;" />
+			<span th:if="${#fields.hasErrors('user')}"
+					style="color: red; font-size: smaller" th:errors="*{user}">Incorrect
+					data</span>
+		</div>
+		
+
+		<div class="form-group">
+			<label for="descripcion" class="control-label col-xs-2">Password
+			</label>
+			<input type="text" class="form-control" id="nombre"
+					th:field="*{password}" 
+					style="width: 10em;" />
+			<span th:if="${#fields.hasErrors('password')}"
+					style="color: red; font-size: smaller" th:errors="*{password}"></span>
+			
+		</div>
+
+		<!-- Owner name field -->
+		<div class="form-group">
+			<label for="id" class="control-label col-xs-2">Email
+			</label>
+			<input type="text" class="form-control" id="id"
+					th:field="*{email}" 
+					style="width: 10em;" />
+					
+			<span th:if="${#fields.hasErrors('email')}"
+					style="color: red; font-size: smaller" th:errors="*{email}"></span>
+			
+		</div>
+		<!-- Owner name field -->
+		<div class="form-group">
+			<label for="id" class="control-label col-xs-2">Rol 1
+			</label>
+			<select th:field="*{rol1}">
+				<option value=""> -- </option>
+               	<option th:each="role : ${roles}" th:value="${role.role}" th:utext="${role.role}"/>
+              </select>
+			
+					
+			
+		</div>
+		<div class="form-group">
+			<label for="id" class="control-label col-xs-2">Rol 2
+			</label>
+			<select th:field="*{rol2}">
+				<option value=""> -- </option>
+               	<option th:each="role : ${roles}" th:value="${role.role}" th:utext="${role.role}"/>
+              </select>
+					
+			
+		</div>
+		<div class="form-group">
+			<label for="id" class="control-label col-xs-2">Rol 3
+			</label>
+			<select th:field="*{rol3}">
+				<option value=""> -- </option>
+               	<option th:each="role : ${roles}" th:value="${role.role}" th:utext="${role.role}"/>
+              </select>
+					
+			
+		</div>
+				<!--  Submit button -->
+		<div class="form-group">
+			<div class="col-xs-offset-2 col-xs-10">
+				<button type="submit" class="btn btn-primary">GRABAR</button>
+			</div>
+		</div>
+		 <a class="button" th:href="@{/}">CANCELAR</a><br>
+		<div class="form-group">
+		<span th:text="${mensaje}"></span>
+		</div>
+	</form>
+ 
+<br>
+	<a th:href="@{/}">ir a menu</a>
+</div>
+</body>
+</html>

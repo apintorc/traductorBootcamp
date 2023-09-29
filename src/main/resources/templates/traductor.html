@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+ crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Traductor de Palabras</title>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="display-4 text-center">Traductor de Palabras</h1>
+        
+        <form th:action="@{/traducir}" method="post" class="mt-4">
+            <div class="form-group">
+                <label for="original">Palabra en Idioma Original:</label>
+                <input type="text" id="original" name="original" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="idiomaDestino">Selecciona el Idioma de Destino:</label>
+                <select id="idiomaDestino" name="idiomaDestino" class="form-control" required>
+                    <option value="es">Español</option>
+                    <option value="en">Inglés</option>
+                    <option value="fr">Francés</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Traducir</button>
+        </form>
+        
+        <h2 class="mt-5">Resultados:</h2>
+        <p th:if="${traduccion != null}" th:text="${traduccion}" class="lead"></p>
+    </div>
+</body>
+</html>

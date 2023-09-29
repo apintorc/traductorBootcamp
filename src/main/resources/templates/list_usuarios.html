@@ -1,0 +1,46 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+ crossorigin="anonymous">
+ 
+<head>
+<meta charset="ISO-8859-1">
+<title>Listado usuarios</title>
+</head>
+
+
+ 
+<body>
+<h1>Listado de usuarios</h1>       
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">USER </th>
+      <th scope="col">PASSWORD </th>
+      <th scope="col">EMAIL</th>
+      <th scope="col">ACCION</th>
+      <th scope="col">ACCION</th>
+      <th scope="col">ACCION</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="u : ${usuarios}">
+					<td th:text="${u.user}"></td>
+					<td th:text="${u.password}"></td>
+					<td th:text="${u.email}"></td>
+					<td ><a th:href="@{|/ver_roles/${u.user}|}">Ver roles</a></td>
+					<td ><a th:href="@{|/add_roles/${u.user}|}">Añadir roles</a></td>
+					<td ><a th:href="@{|/eliminar_usuario/${u.user}|}">Borrar</a></td>
+					
+	</tr>
+  </tbody>
+</table>
+<span th:text="${mensaje}"></span><br>
+<a th:href="@{/}">Atrás</a><br>
+</body>
+</html>
+  
