@@ -23,32 +23,31 @@
             </div>
             <div class="col-md-9">
                 <!-- Contenido principal aquí -->
-                <h1>Listado de usuarios</h1>       
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">USER </th>
-      <th scope="col">PASSWORD </th>
-      <th scope="col">ACCION</th>
-      <th scope="col">ACCION</th>
-      <th scope="col">ACCION</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr th:each="u : ${usuarios}">
-					<td th:text="${u.user}"></td>
-					<td th:text="${u.password}"></td>
-					<td ><a th:href="@{|/ver_roles/${u.user}|}">Ver roles</a></td>
-					<td ><a th:href="@{|/add_roles/${u.user}|}">Añadir roles</a></td>
-					<td ><a th:href="@{|/eliminar_usuario/${u.user}|}">Borrar</a></td>
-					
-	</tr>
-  </tbody>
-  		<div class="form-group">
-		<span th:text="${mensaje}"></span>
-		</div>
-</table>
+                <h1>Listado de Palabras</h1>
+                <table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">ID Palabra </th>
+				      <th scope="col">Traducción original </th>
+				      <th scope="col">Traducción inglés </th>
+				      <th scope="col">Traducción francés </th>
+				      <th scope="col">Traducción español </th>
+					  <th scope="col">Accion 1 </th>
+					  <th scope="col">Accion 2 </th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr th:each="p : ${palabras}">
+									<td th:text="${p.id_palabra}"></td>
+									<td th:text="${p.original}"></td>
+									<td th:text="${p.traduccionIN}"></td>
+									<td th:text="${p.traduccionFR}"></td>
+									<td th:text="${p.traduccionSP}"></td>
+									<td ><a th:href="@{|/editar_palabra/${p.id_palabra}|}">Editar</a></td>
+									<td ><a th:href="@{|/eliminar_palabra/${p.id_palabra}|}">Borrar</a></td>
+					</tr>
+				  </tbody>
+				  </table>
             </div>
         </div>
     </div>
@@ -61,5 +60,3 @@
         integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kD5tr5B5P4DvF7Ewx6p4U02w" crossorigin="anonymous"></script>
 </body>
 </html>
-
-  

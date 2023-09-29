@@ -16,10 +16,8 @@ public class Usuario_v {
 
 	private String user;
 	private String password;
-	private String email;
 	private String rol1;
 	private String rol2;
-	private String rol3;
 	
 	public Usuario_v(String user) {
 		super();
@@ -36,11 +34,6 @@ public class Usuario_v {
 		} else if(password.length() < 9) {
 			errors.rejectValue("password", "badformat", "La contraseña debe tener más de 8 caracteres");
 			
-		}
-		if(!StringUtils.hasText(email) ) {
-			errors.rejectValue("email", "badformat", "rellene la direccion de email");
-		} else if(!Pattern.compile("^(.+)@(\\S+)$").matcher(email).matches()){
-			errors.rejectValue("email", "badformat", "Introduzca un email válido");
 		}
 		
 		

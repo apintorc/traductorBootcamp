@@ -23,32 +23,37 @@
             </div>
             <div class="col-md-9">
                 <!-- Contenido principal aquí -->
-                <h1>Listado de usuarios</h1>       
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">USER </th>
-      <th scope="col">PASSWORD </th>
-      <th scope="col">ACCION</th>
-      <th scope="col">ACCION</th>
-      <th scope="col">ACCION</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr th:each="u : ${usuarios}">
-					<td th:text="${u.user}"></td>
-					<td th:text="${u.password}"></td>
-					<td ><a th:href="@{|/ver_roles/${u.user}|}">Ver roles</a></td>
-					<td ><a th:href="@{|/add_roles/${u.user}|}">Añadir roles</a></td>
-					<td ><a th:href="@{|/eliminar_usuario/${u.user}|}">Borrar</a></td>
-					
-	</tr>
-  </tbody>
-  		<div class="form-group">
+                <h1>Añadir roles </h1>
+                <form action="#" th:object="${usuario_v}" method="POST" th:action="@{/add_role_usuario}" class="form-horizontal">
+		
+		<div class="form-group">
+			<label for="number" >User</label>
+			<input type="text" class="form-control" id="user" readonly
+					th:field="*{user}" 
+					style="width: 10em;"/>
+			<span th:if="${#fields.hasErrors('user')}"
+					style="color: red; font-size: smaller" th:errors="*{user}">Incorrect
+					data</span>
+		</div>
+		
+		<div class="form-group">
+			<label for="id" class="control-label col-xs-2">Rol
+			</label>
+			<select th:field="*{rol1}">
+				<option value=""> -- </option>
+               	<option th:each="role : ${roles}" th:value="${role.role}" th:utext="${role.role}"/>
+              </select>
+			
+				<!--  Submit button -->
+		<div class="form-group">
+			<div class="col-xs-offset-2 col-xs-10">
+				<button type="submit" class="btn btn-primary">AÑADIR</button>
+			</div>
+		</div>
+		<div class="form-group">
 		<span th:text="${mensaje}"></span>
 		</div>
-</table>
+	</form>
             </div>
         </div>
     </div>
@@ -61,5 +66,3 @@
         integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kD5tr5B5P4DvF7Ewx6p4U02w" crossorigin="anonymous"></script>
 </body>
 </html>
-
-  

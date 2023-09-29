@@ -108,7 +108,7 @@ public class LoginController {
 			model.addAttribute("mensaje", "Usuario existente");
 			return "alta_usuario";
 		}
-		UsuarioDTO usuarioDTO = new UsuarioDTO(usuario_v.getUser(), usuario_v.getEmail(), usuario_v.getPassword());
+		UsuarioDTO usuarioDTO = new UsuarioDTO(usuario_v.getUser(), usuario_v.getPassword());
 		List<RoleDTO> rolesDTO = new ArrayList<RoleDTO>();
 		
 		if(!usuario_v.getRol1().isEmpty()) {
@@ -117,10 +117,6 @@ public class LoginController {
 		}
 		if(!usuario_v.getRol2().isEmpty()) {
 			RoleDTO role = new RoleDTO(usuario_v.getRol2());
-			rolesDTO.add(role);
-		}
-		if(!usuario_v.getRol3().isEmpty()) {
-			RoleDTO role = new RoleDTO(usuario_v.getRol3());
 			rolesDTO.add(role);
 		}
 		
@@ -151,6 +147,7 @@ public class LoginController {
 		
 	}
 	
+/**	
 	@GetMapping("/add_roles/{user}")
 
 	public String altaUsuario(@PathVariable("user") String user, Model model) {
@@ -208,6 +205,9 @@ public class LoginController {
 		
 
 	}
+	
+	
+	*/
 	
 	@PostMapping("/add_role_usuario")
 	public String addRoleUsuario(Usuario_v usuario_v, Model model) {

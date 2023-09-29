@@ -23,52 +23,60 @@
             </div>
             <div class="col-md-9">
                 <!-- Contenido principal aquí -->
-                <h1>Alta de usuario</h1>
-                 <form action="#" th:object="${usuario_v}" method="POST" th:action="@{/grabar_usuario}" class="form-horizontal">
+                <h1>Alta de palabra</h1>
+                 <form action="#" th:object="${palabra_v}" method="POST" th:action="@{/grabar_palabra}" class="form-horizontal">
  <!-- Account Number field -->
 		<div class="form-group">
-			<label for="number" >User</label>
-			<input type="text" class="form-control" id="id_alumno"
-					th:field="*{user}" 
+			<label for="number" >Id Palabra</label>
+			<input type="text" class="form-control" id="id_palabra"
+					th:field="*{id_palabra}" 
 					style="width: 10em;" />
-			<span th:if="${#fields.hasErrors('user')}"
-					style="color: red; font-size: smaller" th:errors="*{user}">Incorrect
+			<span th:if="${#fields.hasErrors('id_palabra')}"
+					style="color: red; font-size: smaller" th:errors="*{id_palabra}">Incorrect
 					data</span>
 		</div>
 		
 
 		<div class="form-group">
-			<label for="descripcion" class="control-label col-xs-2">Password
+			<label for="original" class="control-label col-xs-2">Palabra original
 			</label>
-			<input type="text" class="form-control" id="nombre"
-					th:field="*{password}" 
+			<input type="text" class="form-control" id="original"
+					th:field="*{original}" 
 					style="width: 10em;" />
-			<span th:if="${#fields.hasErrors('password')}"
-					style="color: red; font-size: smaller" th:errors="*{password}"></span>
+			<span th:if="${#fields.hasErrors('original')}"
+					style="color: red; font-size: smaller" th:errors="*{original}"></span>
 			
 		</div>
 
 
-		<!-- Owner name field -->
-		<div class="form-group">
-			<label for="id" class="control-label col-xs-2">Rol 1
+				<div class="form-group">
+			<label for="original" class="control-label col-xs-2">Traduccion en ingles
 			</label>
-			<select th:field="*{rol1}">
-				<option value=""> -- </option>
-               	<option th:each="role : ${roles}" th:value="${role.role}" th:utext="${role.role}"/>
-              </select>
-			
-					
+			<input type="text" class="form-control" id="traduccionIN"
+					th:field="*{traduccionIN}" 
+					style="width: 10em;" />
+			<span th:if="${#fields.hasErrors('traduccionIN')}"
+					style="color: red; font-size: smaller" th:errors="*{traduccionIN}"></span>
 			
 		</div>
-		<div class="form-group">
-			<label for="id" class="control-label col-xs-2">Rol 2
+				<div class="form-group">
+			<label for="original" class="control-label col-xs-2">Traduccion en frances
 			</label>
-			<select th:field="*{rol2}">
-				<option value=""> -- </option>
-               	<option th:each="role : ${roles}" th:value="${role.role}" th:utext="${role.role}"/>
-              </select>
-					
+			<input type="text" class="form-control" id="traduccionFR"
+					th:field="*{traduccionFR}" 
+					style="width: 10em;" />
+			<span th:if="${#fields.hasErrors('traduccionFR')}"
+					style="color: red; font-size: smaller" th:errors="*{traduccionFR}"></span>
+			
+		</div>
+				<div class="form-group">
+			<label for="original" class="control-label col-xs-2">Traduccion en español
+			</label>
+			<input type="text" class="form-control" id="traduccionSP"
+					th:field="*{traduccionSP}" 
+					style="width: 10em;" />
+			<span th:if="${#fields.hasErrors('traduccionSP')}"
+					style="color: red; font-size: smaller" th:errors="*{traduccionSP}"></span>
 			
 		</div>
 				<!--  Submit button -->
