@@ -5,10 +5,13 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.traductor.dto.CategoriaDTO;
 import com.example.traductor.dto.PalabraDTO;
 import com.example.traductor.dto.RoleDTO;
 import com.example.traductor.dto.UsuarioDTO;
 import com.example.traductor.interfaces.IPalabraService;
+import com.example.traductor.model.Categoria;
 import com.example.traductor.model.Palabra;
 import com.example.traductor.model.Role;
 import com.example.traductor.model.Usuario;
@@ -49,7 +52,7 @@ public class PalabraService implements IPalabraService {
 		List<PalabraDTO> palabrasdto = new ArrayList<PalabraDTO>();
 		
 		for (Palabra palabra : palabras) {
-			PalabraDTO palabradto = new PalabraDTO(palabra.getId_Palabra(),palabra.getOriginal(),palabra.getTraduccionSP(),palabra.getTraduccionIN(),palabra.getTraduccionFR());
+			PalabraDTO palabradto = new PalabraDTO(palabra.getId_palabra(),palabra.getOriginal(),palabra.getTraduccionSP(),palabra.getTraduccionIN(),palabra.getTraduccionFR(),new CategoriaDTO(palabra.getCategoria().getId_categoria(), palabra.getCategoria().getDescripcion()));
 			palabrasdto.add(palabradto);
 		}
 		
@@ -59,13 +62,13 @@ public class PalabraService implements IPalabraService {
 	@Override
 	public PalabraDTO findPalabraById_Palabra(String id_palabra) {
 		Palabra palabra = palabraRepository.findById(id_palabra).orElse(null);
-		PalabraDTO palabradto = new PalabraDTO(palabra.getId_Palabra(),palabra.getOriginal(),palabra.getTraduccionSP(),palabra.getTraduccionIN(),palabra.getTraduccionFR());;
+		PalabraDTO palabradto = new PalabraDTO(palabra.getId_palabra(),palabra.getOriginal(),palabra.getTraduccionSP(),palabra.getTraduccionIN(),palabra.getTraduccionFR(),new CategoriaDTO(palabra.getCategoria().getId_categoria(), palabra.getCategoria().getDescripcion()));
 		return palabradto;
 	}
 
 	@Override
 	public void updatePalabra(PalabraDTO palabraDTO) {
-		Palabra p = new Palabra(palabraDTO.getId_palabra(),palabraDTO.getOriginal(),palabraDTO.getTraduccionSP(),palabraDTO.getTraduccionIN(),palabraDTO.getTraduccionFR());
+		Palabra p = new Palabra(palabraDTO.getId_palabra(),palabraDTO.getOriginal(),palabraDTO.getTraduccionSP(),palabraDTO.getTraduccionIN(),palabraDTO.getTraduccionFR(),palabraDTO.getCategoriadto().getId_categoria());
 		palabraRepository.save(p);
 	}
 	

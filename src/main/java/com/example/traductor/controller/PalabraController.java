@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.traductor.dto.CategoriaDTO;
 import com.example.traductor.dto.PalabraDTO;
 import com.example.traductor.dto.RoleDTO;
 import com.example.traductor.dto.UsuarioDTO;
@@ -55,7 +57,7 @@ public class PalabraController {
 	
 	@PostMapping("/grabar_palabra")
 	public String grabarUsuario(Palabra_v palabra_v, Model model) {
-		PalabraDTO palabraDTO = new PalabraDTO(palabra_v.getId_palabra(),palabra_v.getOriginal(),palabra_v.getTraduccionSP(),palabra_v.getTraduccionIN(),palabra_v.getTraduccionFR());
+		PalabraDTO palabraDTO = new PalabraDTO(palabra_v.getId_palabra(),palabra_v.getOriginal(),palabra_v.getTraduccionSP(),palabra_v.getTraduccionIN(),palabra_v.getTraduccionFR(),new CategoriaDTO(palabra_v.getCategoriadto().getId_categoria(), palabra_v.getCategoriadto().getDescripcion()));
 		palabraService.updatePalabra(palabraDTO);
 		
 		return getPalabras(model);
@@ -70,14 +72,14 @@ public class PalabraController {
 	@GetMapping("/editar_palabra/{id_palabra}")
 	public String editar_palabra(@PathVariable("id_palabra") String id_palabra, Model model) {
 		PalabraDTO palabradto=palabraService.findPalabraById_Palabra(id_palabra);
-		Palabra_v palabra_v=new Palabra_v(palabradto.getId_palabra(),palabradto.getOriginal(),palabradto.getTraduccionSP(),palabradto.getTraduccionIN(),palabradto.getTraduccionFR());
+		Palabra_v palabra_v=new Palabra_v(palabradto.getId_palabra(),palabradto.getOriginal(),palabradto.getTraduccionSP(),palabradto.getTraduccionIN(),palabradto.getTraduccionFR(),new CategoriaDTO(palabradto.getCategoriadto().getId_categoria(), palabradto.getCategoriadto().getDescripcion()));
 		model.addAttribute("palabra_v", palabra_v);
 		return "editar_palabra";
 	}
 	
 	@PostMapping("/update_palabra")
 	public String update_palabra(Palabra_v palabra_v, Model model) {
-		PalabraDTO palabradto=new PalabraDTO(palabra_v.getId_palabra(),palabra_v.getOriginal(),palabra_v.getTraduccionSP(),palabra_v.getTraduccionIN(),palabra_v.getTraduccionFR());
+		PalabraDTO palabradto=new PalabraDTO(palabra_v.getId_palabra(),palabra_v.getOriginal(),palabra_v.getTraduccionSP(),palabra_v.getTraduccionIN(),palabra_v.getTraduccionFR(),new CategoriaDTO(palabra_v.getCategoriadto().getId_categoria(), palabra_v.getCategoriadto().getDescripcion()));
 		palabraService.updatePalabra(palabradto);
 		return getPalabras(model);
 	}
