@@ -16,7 +16,10 @@ import com.example.traductor.dto.CategoriaDTO;
 import com.example.traductor.dto.PalabraDTO;
 import com.example.traductor.dto.RoleDTO;
 import com.example.traductor.dto.UsuarioDTO;
+import com.example.traductor.interfaces.ICategoriaService;
 import com.example.traductor.interfaces.IPalabraService;
+import com.example.traductor.model.Categoria;
+import com.example.traductor.model.Palabra;
 import com.example.traductor.util.Palabra_v;
 import com.example.traductor.util.Usuario_v;
 
@@ -24,6 +27,9 @@ import com.example.traductor.util.Usuario_v;
 public class PalabraController {
 	@Autowired
     IPalabraService palabraService;
+	
+	@Autowired
+    ICategoriaService categoriaService;
 	
 	@GetMapping("/traductor")
 	public String traductorView(Model model) {
@@ -51,18 +57,21 @@ public class PalabraController {
 	
 	@GetMapping("/alta_palabra")
 	public String altaPalabra(Model model) {
-		model.addAttribute("palabra_v", new Palabra_v());
+		model.addAttribute("palabraDTO", new PalabraDTO());
+		model.addAttribute("categorias", categoriaService.listCategorias());
+		
 		return "alta_palabra";
 	}
 	
 	@PostMapping("/grabar_palabra")
-	public String grabarUsuario(Palabra_v palabra_v, Model model) {
-		PalabraDTO palabraDTO = new PalabraDTO(palabra_v.getId_palabra(),palabra_v.getOriginal(),palabra_v.getTraduccionSP(),palabra_v.getTraduccionIN(),palabra_v.getTraduccionFR(),new CategoriaDTO(palabra_v.getCategoriadto().getId_categoria(), palabra_v.getCategoriadto().getDescripcion()));
-		palabraService.updatePalabra(palabraDTO);
-		
-		return getPalabras(model);
+	public String grabarPalabra(PalabraDTO palabraDTO, Model model) {
+	    palabraService.updatePalabra(palabraDTO);
+	    return getPalabras(model); 
 	}
-	
+
+
+
+
 	@GetMapping("/eliminar_palabra/{id_palabra}")
 	public String eliminarPalabra(@PathVariable("id_palabra") String id_palabra, Model model) {
 		palabraService.deletePalabra(id_palabra);
@@ -72,15 +81,18 @@ public class PalabraController {
 	@GetMapping("/editar_palabra/{id_palabra}")
 	public String editar_palabra(@PathVariable("id_palabra") String id_palabra, Model model) {
 		PalabraDTO palabradto=palabraService.findPalabraById_Palabra(id_palabra);
-		Palabra_v palabra_v=new Palabra_v(palabradto.getId_palabra(),palabradto.getOriginal(),palabradto.getTraduccionSP(),palabradto.getTraduccionIN(),palabradto.getTraduccionFR(),new CategoriaDTO(palabradto.getCategoriadto().getId_categoria(), palabradto.getCategoriadto().getDescripcion()));
-		model.addAttribute("palabra_v", palabra_v);
+		//Palabra_v palabra_v=new Palabra_v(palabradto.getId_palabra(),palabradto.getOriginal(),palabradto.getTraduccionSP(),palabradto.getTraduccionIN(),palabradto.getTraduccionFR(),1);
+		model.addAttribute("categorias", categoriaService.listCategorias());
+		model.addAttribute("palabra_v", palabradto);
 		return "editar_palabra";
 	}
 	
 	@PostMapping("/update_palabra")
-	public String update_palabra(Palabra_v palabra_v, Model model) {
-		PalabraDTO palabradto=new PalabraDTO(palabra_v.getId_palabra(),palabra_v.getOriginal(),palabra_v.getTraduccionSP(),palabra_v.getTraduccionIN(),palabra_v.getTraduccionFR(),new CategoriaDTO(palabra_v.getCategoriadto().getId_categoria(), palabra_v.getCategoriadto().getDescripcion()));
-		palabraService.updatePalabra(palabradto);
+	public String update_palabra(PalabraDTO palabraDTO, Model model) {
+		//PalabraDTO palabradto=new PalabraDTO(palabra_v.getId_palabra(),palabra_v.getOriginal(),palabra_v.getTraduccionSP(),palabra_v.getTraduccionIN(),palabra_v.getTraduccionFR(),new CategoriaDTO());
+		palabraService.updatePalabra(palabraDTO);
 		return getPalabras(model);
 	}
+	
+
 }

@@ -14,8 +14,10 @@
                 <h3>Menu de Opciones</h3>
                 <hr>
                 <ul class="list-group">
-                    <li class="list-group-item"><a th:href="@{/list_palabras}">Listado de Palabras</a></li>
-                    <li class="list-group-item"><a th:href="@{/alta_palabra}">Alta de Palabra</a></li>
+                    <li class="list-group-item"><a th:href="@{/list_palabras}">Listado de Traducciones</a></li>
+                    <li class="list-group-item"><a th:href="@{/alta_palabra}">Alta de Traducciones</a></li>
+                    <li class="list-group-item"><a th:href="@{/list_categorias}">Listado de Categorías</a></li>
+                    <li class="list-group-item"><a th:href="@{/alta_categoria}">Alta de Categoría</a></li>
                     <li class="list-group-item"><a th:href="@{/list_usuarios}">Listado de Usuarios</a></li>
                     <li class="list-group-item"><a th:href="@{/alta_usuario}">Alta de Usuario</a></li>
                     <li class="list-group-item"><a th:href="@{/}">Cerrar Sesión</a></li>
@@ -23,15 +25,20 @@
             </div>
             <div class="col-md-9">
                 <!-- Contenido principal aquí -->
-                <h1>Listado de Palabras</h1>
+                <h1>Listado de Traducciones </h1> 
+
+	   			 <h2 th:if="${descripcion != null }">
+	   			 Categoria: <span th:text="${descripcion}"></span>
+			    </h2>
                 <table class="table">
 				  <thead>
 				    <tr>
-				      <th scope="col">ID Palabra </th>
+				      <th scope="col">ID Traducción </th>
 				      <th scope="col">Traducción original </th>
 				      <th scope="col">Traducción inglés </th>
 				      <th scope="col">Traducción francés </th>
 				      <th scope="col">Traducción español </th>
+				      <th scope="col">Nombre Categoría </th>
 					  <th scope="col">Accion 1 </th>
 					  <th scope="col">Accion 2 </th>
 				    </tr>
@@ -43,6 +50,12 @@
 									<td th:text="${p.traduccionIN}"></td>
 									<td th:text="${p.traduccionFR}"></td>
 									<td th:text="${p.traduccionSP}"></td>
+									<td>
+									    <a th:href="@{|/ver_traducciones/${p.categoria.id_categoria}/${p.categoria.descripcion}|}">
+									        <span th:text="${p.categoria.descripcion}"></span>
+									    </a>
+									</td>
+
 									<td ><a th:href="@{|/editar_palabra/${p.id_palabra}|}">Editar</a></td>
 									<td ><a th:href="@{|/eliminar_palabra/${p.id_palabra}|}">Borrar</a></td>
 					</tr>

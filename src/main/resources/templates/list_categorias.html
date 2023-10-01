@@ -25,32 +25,23 @@
             </div>
             <div class="col-md-9">
                 <!-- Contenido principal aquí -->
-                <h1>Listado de usuarios</h1>       
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">USER </th>
-      <th scope="col">PASSWORD </th>
-      <th scope="col">ACCION</th>
-      <th scope="col">ACCION</th>
-      <th scope="col">ACCION</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr th:each="u : ${usuarios}">
-					<td th:text="${u.user}"></td>
-					<td th:text="${u.password}"></td>
-					<td ><a th:href="@{|/ver_roles/${u.user}|}">Ver roles</a></td>
-					<td ><a th:href="@{|/add_roles/${u.user}|}">Añadir roles</a></td>
-					<td ><a th:href="@{|/eliminar_usuario/${u.user}|}">Borrar</a></td>
-					
-	</tr>
-  </tbody>
-  		<div class="form-group">
-		<span th:text="${mensaje}"></span>
-		</div>
-</table>
+                <h1>Listado de Categorías</h1>
+                <table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">ID_CATEGORIA </th>
+				      <th scope="col">DESCRIPCION </th>
+				      <th scope="col">Acción</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr th:each="a : ${categorias}">
+									<td th:text="${a.id_categoria}"></td>
+									<td th:text="${a.descripcion}"></td>
+									<td ><a th:href="@{|/ver_traducciones/${a.id_categoria}/${a.descripcion}|}">Ver traducciones</a></td>
+					</tr>
+				  </tbody>
+				</table>
             </div>
         </div>
     </div>

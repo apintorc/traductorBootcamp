@@ -19,9 +19,8 @@ public class Palabra {
 	private String traduccionSP;
 	private String traduccionIN;
 	private String traduccionFR;
-	private int id_categoria;
 	@ManyToOne
-	@JoinColumn(name="id_categoria",referencedColumnName ="id_categoria" , insertable=false,updatable=false)
+	@JoinColumn(name="id_categoria",nullable=false)
 	private Categoria categoria;
 	
 	public Palabra() {
@@ -29,14 +28,14 @@ public class Palabra {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Palabra(String id_idioma, String original, String traduccionSP, String traduccionIN, String traduccionFR, int id_categoria) {
+	public Palabra(String id_palabra, String original, String traduccionSP, String traduccionIN, String traduccionFR, Categoria categoria) {
 		super();
-		this.id_palabra = id_idioma;
+		this.id_palabra = id_palabra;
 		this.original = original;
 		this.traduccionSP = traduccionSP;
 		this.traduccionIN = traduccionIN;
 		this.traduccionFR = traduccionFR;
-		this.id_categoria = id_categoria;
+		this.categoria = categoria;
 	}
 
 	public String getId_palabra() {
@@ -70,13 +69,6 @@ public class Palabra {
 		this.traduccionFR = traduccionFR;
 	}
 
-	public int getId_categoria() {
-		return id_categoria;
-	}
-
-	public void setId_categoria(int id_categoria) {
-		this.id_categoria = id_categoria;
-	}
 
 	public Categoria getCategoria() {
 		return categoria;

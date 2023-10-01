@@ -2,6 +2,8 @@ package com.example.traductor.model;
 
 import java.util.List;
 
+import jakarta.persistence.FetchType;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,9 +18,7 @@ public class Categoria {
 	@Id
 	private int id_categoria;
 	private String descripcion;
-	@OneToMany(cascade=CascadeType.ALL)
-	//Lazyload
-	@JoinColumn(name="id_categoria",referencedColumnName ="id_categoria" )
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Palabra> palabras;
 	public Categoria() {
 		super();

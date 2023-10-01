@@ -14,8 +14,10 @@
                 <h3>Menu de Opciones</h3>
                 <hr>
                 <ul class="list-group">
-                    <li class="list-group-item"><a th:href="@{/list_palabras}">Listado de Palabras</a></li>
-                    <li class="list-group-item"><a th:href="@{/alta_palabra}">Alta de Palabra</a></li>
+                    <li class="list-group-item"><a th:href="@{/list_palabras}">Listado de Traducciones</a></li>
+                    <li class="list-group-item"><a th:href="@{/alta_palabra}">Alta de Traducciones</a></li>
+                    <li class="list-group-item"><a th:href="@{/list_categorias}">Listado de Categorías</a></li>
+                    <li class="list-group-item"><a th:href="@{/alta_categoria}">Alta de Categoría</a></li>
                     <li class="list-group-item"><a th:href="@{/list_usuarios}">Listado de Usuarios</a></li>
                     <li class="list-group-item"><a th:href="@{/alta_usuario}">Alta de Usuario</a></li>
                     <li class="list-group-item"><a th:href="@{/}">Cerrar Sesión</a></li>
@@ -23,11 +25,11 @@
             </div>
             <div class="col-md-9">
                 <!-- Contenido principal aquí -->
-                <h1>Alta de palabra</h1>
-                 <form action="#" th:object="${palabra_v}" method="POST" th:action="@{/grabar_palabra}" class="form-horizontal">
+                <h1>Alta de traducción</h1>
+                 <form action="#" th:object="${palabraDTO}" method="POST" th:action="@{/grabar_palabra}" class="form-horizontal">
  <!-- Account Number field -->
 		<div class="form-group">
-			<label for="number" >Id Palabra</label>
+			<label for="number" >Id Traducción</label>
 			<input type="text" class="form-control" id="id_palabra"
 					th:field="*{id_palabra}" 
 					style="width: 10em;" />
@@ -79,6 +81,22 @@
 					style="color: red; font-size: smaller" th:errors="*{traduccionSP}"></span>
 			
 		</div>
+
+
+
+                <div class="form-group">
+                    <label>Category</label>
+                        <select class="form-control" th:field="*{categoria.descripcion}" style="width: 145px">
+                        <option value="">Select Category</option>
+                        <option th:each="category : ${categorias}"
+                                th:value="${category.descripcion}"
+                                th:text="${category.descripcion}">
+                        </option>
+                    </select>
+                </div>
+
+
+
 				<!--  Submit button -->
 		<div class="form-group">
 			<div class="col-xs-offset-2 col-xs-10">

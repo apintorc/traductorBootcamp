@@ -21,6 +21,6 @@ public class Palabra_v {
 	private String traduccionSP;
 	private String traduccionIN;
 	private String traduccionFR;
-	private CategoriaDTO categoriadto;
+	private int id_categoria;
 	
 }

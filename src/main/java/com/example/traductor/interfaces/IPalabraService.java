@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.traductor.dto.PalabraDTO;
 import com.example.traductor.dto.UsuarioDTO;
+import com.example.traductor.model.Palabra;
 
 public interface IPalabraService {
 	public String traducir(String palabra, String idiomaDestino);
