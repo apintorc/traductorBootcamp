@@ -34,7 +34,6 @@ public class CategoriaService implements ICategoriaService {
         Categoria categoria = categoriaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Categoría no encontrada con el ID: " + id));
         
-        // Mapear la entidad Categoria a CategoriaDTO
         CategoriaDTO categoriaDTO = new CategoriaDTO();
         categoriaDTO.setId_categoria(categoria.getId_categoria());
         categoriaDTO.setDescripcion(categoria.getDescripcion());

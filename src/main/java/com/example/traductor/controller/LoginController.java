@@ -41,8 +41,8 @@ public class LoginController {
 	public String iniciarSesion(Usuario_v usuario_v, Model model, HttpServletRequest request) {
 		UsuarioDTO usuarioDTO = usuarioService.login(usuario_v.getUser(), usuario_v.getPassword());
 		if(usuarioDTO != null) {
-			HttpSession session = request.getSession(true);
-			session.setAttribute("user", session);
+			//HttpSession session = request.getSession(true);
+			//session.setAttribute("user", session);
 			List<RoleDTO>rolesDTO = usuarioDTO.getRolesDTO();
 			if(rolesDTO.contains(new RoleDTO("ADMIN","Insertar, listar, editar y borrar palabras"))){
 				return "admin";

@@ -22,15 +22,11 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public UsuarioDTO login(String user, String password) {
-        // Busca al usuario por nombre de usuario en la base de datos
         UsuarioDTO usuarioDTO = findUsuarioByUser(user);
 
         if (usuarioDTO != null && usuarioDTO.getPassword().equals(password)) {
-            // Si se encuentra un usuario con el nombre de usuario proporcionado
-            // y la contraseña coincide, entonces se considera una autenticación exitosa
             return usuarioDTO;
         } else {
-            // Si no se encuentra el usuario o la contraseña no coincide, retorna null
             return null;
         }
     }

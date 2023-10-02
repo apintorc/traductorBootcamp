@@ -24,11 +24,9 @@ public class PalabraService implements IPalabraService {
 
 	@Override
     public String traducir(String palabra, String idiomaDestino) {
-        // Buscar la palabra en la base de datos por su nombre original
         Palabra palabraEncontrada = palabraRepository.findByOriginal(palabra);
 
         if (palabraEncontrada != null) {
-            // Devolver la traducción correspondiente según el idioma de destino
             switch (idiomaDestino) {
                 case "es":
                     return palabraEncontrada.getTraduccionSP();
@@ -40,7 +38,6 @@ public class PalabraService implements IPalabraService {
                     return "Idioma de destino no válido";
             }
         } else {
-            // Si no se encuentra la palabra, devolver un mensaje de error
             return "Traducción no encontrada para " + palabra;
         }
     }
